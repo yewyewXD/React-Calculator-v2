@@ -9,9 +9,10 @@ function App() {
   const [operator, setOperator] = useState("");
 
   function onClickNum(e) {
-    setNumbers([]);
-    const newNumList = [...numbers, e.target.innerHTML];
-    setNumbers(newNumList);
+    if (e.target.innerHTML !== "0" || numbers.length > 0) {
+      const newNumList = [...numbers, e.target.innerHTML];
+      setNumbers(newNumList);
+    }
   }
   function onClickClear() {
     setNumbers([]);
