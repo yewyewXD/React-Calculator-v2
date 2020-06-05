@@ -4,7 +4,6 @@
 }
 
 .container {
-  width: 80%;
   overflow: hidden;
   margin: 0 auto;
   padding: 0;
@@ -42,4 +41,19 @@
   justify-content: center;
   align-items: center;
   border: solid 1px black;
+}
+
+.clear {
+  background: lightcoral;
+}
+
+.operator {
+  background: lightblue;
+  margin-left: 10px;
+}
+
+.equal {
+  background: lightgreen;
+  padding: 0 31px;
+  margin-right: 71px;
 }

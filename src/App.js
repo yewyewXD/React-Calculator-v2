@@ -12,13 +12,16 @@ function App() {
     setNumbers(newNumList);
   }
 
+  function onClickClear() {
+    setNumbers([""]);
+  }
+
   return (
     <div>
       <div className="container">
         <h1 className="heading">React Calculator</h1>
         <div className="numpad-head">{numbers}</div>
-
-        <Numpad onClickNum={onClickNum} />
+        <Numpad onClickClear={onClickClear} onClickNum={onClickNum} />
       </div>
     </div>
   );
