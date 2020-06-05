@@ -15,6 +15,15 @@
   margin-bottom: 80px;
 }
 
+.numpad-head {
+  width: 185px;
+  min-height: 20px;
+  text-align: end;
+  font-size: 20px;
+  margin: 20px auto;
+  border: solid 1px black;
+}
+
 .numpad {
   display: flex;
   align-items: center;
