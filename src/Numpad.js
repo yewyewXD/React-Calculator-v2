@@ -1,6 +1,12 @@
 import React from "react";
 
-export default function Numpad({ onClickNum, onClickClear, onClickDel }) {
+export default function Numpad({
+  onClickNum,
+  onClickClear,
+  onClickDel,
+  onClickPlus,
+  onClickCalculate,
+}) {
   return (
     <div className="numpad">
       <div className="num-row">
@@ -11,7 +17,9 @@ export default function Numpad({ onClickNum, onClickClear, onClickDel }) {
         <div className="num" onClick={onClickDel}>
           del
         </div>
-        <div className="num operator">+</div>
+        <div className="num operator" onClick={onClickPlus}>
+          +
+        </div>
       </div>
 
       <div className="num-row">
@@ -57,7 +65,7 @@ export default function Numpad({ onClickNum, onClickClear, onClickDel }) {
         <div className="num" onClick={onClickNum}>
           0
         </div>
-        <div className="num equal" onClick={onClickNum}>
+        <div className="num equal" onClick={onClickCalculate}>
           =
         </div>
       </div>
