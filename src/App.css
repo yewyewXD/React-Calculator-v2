@@ -17,9 +17,9 @@
 
 .numpad-head {
   width: 185px;
-  min-height: 20px;
+  min-height: 40px;
   text-align: end;
-  font-size: 20px;
+  font-size: 30px;
   margin: 20px auto;
   border: solid 1px black;
 }
