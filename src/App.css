@@ -1,0 +1,36 @@
+.body {
+  background: grey;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+  width: 80%;
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.numpad {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.num-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.num {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px black;
+}
