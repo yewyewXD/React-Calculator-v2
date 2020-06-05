@@ -11,9 +11,13 @@ function App() {
     const newNumList = [...numbers, e.target.innerHTML];
     setNumbers(newNumList);
   }
-
   function onClickClear() {
-    setNumbers([""]);
+    setNumbers([]);
+  }
+  function onClickDel() {
+    const newNumList = [...numbers];
+    newNumList.splice(-1, 1);
+    setNumbers(newNumList);
   }
 
   return (
@@ -21,7 +25,11 @@ function App() {
       <div className="container">
         <h1 className="heading">React Calculator</h1>
         <div className="numpad-head">{numbers}</div>
-        <Numpad onClickClear={onClickClear} onClickNum={onClickNum} />
+        <Numpad
+          onClickDel={onClickDel}
+          onClickClear={onClickClear}
+          onClickNum={onClickNum}
+        />
       </div>
     </div>
   );

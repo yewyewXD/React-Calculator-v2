@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Numpad({ onClickNum, onClickClear }) {
+export default function Numpad({ onClickNum, onClickClear, onClickDel }) {
   return (
     <div className="numpad">
       <div className="num-row">
@@ -8,7 +8,9 @@ export default function Numpad({ onClickNum, onClickClear }) {
           AC
         </div>
         <div className="num">+/-</div>
-        <div className="num">del</div>
+        <div className="num" onClick={onClickDel}>
+          del
+        </div>
         <div className="num operator">+</div>
       </div>
 

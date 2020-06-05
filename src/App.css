@@ -43,6 +43,10 @@
   border: solid 1px black;
 }
 
+.num:hover {
+  cursor: pointer;
+}
+
 .clear {
   background: lightcoral;
 }
