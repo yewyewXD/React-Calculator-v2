@@ -6,6 +6,7 @@ export default function Numpad({
   onClickDel,
   onClickOperator,
   onClickCalculate,
+  onClickNegate,
 }) {
   return (
     <div className="numpad">
@@ -13,7 +14,9 @@ export default function Numpad({
         <div className="num clear" onClick={onClickClear}>
           AC
         </div>
-        <div className="num">+/-</div>
+        <div className="num" onClick={onClickNegate}>
+          +/-
+        </div>
         <div className="num" onClick={onClickDel}>
           del
         </div>

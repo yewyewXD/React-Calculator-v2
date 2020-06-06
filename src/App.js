@@ -9,6 +9,7 @@ function App() {
   const [operator, setOperator] = useState(null);
   const [isCleared, setIsCleared] = useState(false);
   const [isCalculated, setIsCalculated] = useState(false);
+  const [toggleNegate, setToggleNegate] = useState(true);
 
   function onClickNum(e) {
     if (parseInt(e.target.innerHTML) > 0 || headingNum.length > 0) {
@@ -40,15 +41,24 @@ function App() {
   function onClickOperator(e) {
     if (numset1 !== null && isCalculated === false) {
       onClickCalculate();
-      setOperator(e.target.innerHTML);
     } else {
-      setOperator(e.target.innerHTML);
       const newNumList = [...headingNum];
       setNumset1(newNumList.join(""));
     }
+    setOperator(e.target.innerHTML);
     setIsCleared(false);
   }
-
+  function onClickNegate() {
+    if (toggleNegate) {
+      const newNumList = ["-", ...headingNum];
+      setHeadingNum(newNumList);
+    } else {
+      const newNumList = [...headingNum];
+      newNumList.splice(0, 1);
+      setHeadingNum(newNumList);
+    }
+    setToggleNegate(!toggleNegate);
+  }
   function onClickCalculate() {
     const numShown = [...headingNum];
     const plus = (parseInt(numset1) + parseInt(numShown.join(""))).toString();
@@ -93,6 +103,7 @@ function App() {
           onClickNum={onClickNum}
           onClickOperator={onClickOperator}
           onClickCalculate={onClickCalculate}
+          onClickNegate={onClickNegate}
         />
       </div>
     </div>
