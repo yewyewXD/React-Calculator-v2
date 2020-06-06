@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import Numpad from "./Numpad";
+import NumpadHead from "./NumpadHead";
 
 function App() {
   const [headingNum, setHeadingNum] = useState([]);
@@ -21,6 +22,7 @@ function App() {
         setHeadingNum(e.target.innerHTML);
         setIsCleared(true);
       }
+      setIsCalculated(false);
     } else {
       console.log("Invalid Starting Number");
     }
@@ -82,7 +84,8 @@ function App() {
     <div>
       <div className="container">
         <h1 className="heading">React Calculator</h1>
-        <div className="numpad-head">{headingNum}</div>
+
+        <NumpadHead headingNum={headingNum} />
         <Numpad
           onClickDel={onClickDel}
           onClickClear={onClickClear}
