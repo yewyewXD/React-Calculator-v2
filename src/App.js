@@ -40,6 +40,7 @@ function App() {
   function onClickOperator(e) {
     if (numset1 !== null && isCalculated === false) {
       onClickCalculate();
+      setOperator(e.target.innerHTML);
     } else {
       setOperator(e.target.innerHTML);
       const newNumList = [...headingNum];
