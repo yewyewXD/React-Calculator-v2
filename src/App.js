@@ -5,7 +5,7 @@ import NumpadHead from "./NumpadHead";
 
 function App() {
   const [headingNum, setHeadingNum] = useState([]);
-  const [numset1, setNumset1] = useState(null);
+  const [preservedNum, setPreservedNum] = useState(null);
   const [operator, setOperator] = useState(null);
   const [isCleared, setIsCleared] = useState(false);
   const [isCalculated, setIsCalculated] = useState(false);
@@ -25,12 +25,12 @@ function App() {
       }
       setIsCalculated(false);
     } else {
-      console.log("Invalid Starting Number");
+      console.log("Invalid Starting Value");
     }
   }
   function onClickClear() {
     setHeadingNum([]);
-    setNumset1(null);
+    setPreservedNum(null);
     setOperator(null);
   }
   function onClickDel() {
@@ -39,14 +39,18 @@ function App() {
     setHeadingNum(newNumList);
   }
   function onClickOperator(e) {
-    if (numset1 !== null && isCalculated === false) {
-      onClickCalculate();
+    if (headingNum.length > 0) {
+      if (preservedNum !== null && isCalculated === false) {
+        onClickCalculate();
+      } else {
+        const newNumList = [...headingNum];
+        setPreservedNum(newNumList.join(""));
+      }
+      setOperator(e.target.innerHTML);
+      setIsCleared(false);
     } else {
-      const newNumList = [...headingNum];
-      setNumset1(newNumList.join(""));
+      console.log("Invalid Starting Value");
     }
-    setOperator(e.target.innerHTML);
-    setIsCleared(false);
   }
   function onClickNegate() {
     if (toggleNegate) {
@@ -61,31 +65,37 @@ function App() {
   }
   function onClickCalculate() {
     const numShown = [...headingNum];
-    const plus = (parseInt(numset1) + parseInt(numShown.join(""))).toString();
-    const minus = (parseInt(numset1) - parseInt(numShown.join(""))).toString();
-    const multiple = (
-      parseInt(numset1) * parseInt(numShown.join(""))
+    const plus = (
+      parseInt(preservedNum) + parseInt(numShown.join(""))
     ).toString();
-    const divide = (parseInt(numset1) / parseInt(numShown.join(""))).toString();
+    const minus = (
+      parseInt(preservedNum) - parseInt(numShown.join(""))
+    ).toString();
+    const multiple = (
+      parseInt(preservedNum) * parseInt(numShown.join(""))
+    ).toString();
+    const divide = (
+      parseInt(preservedNum) / parseInt(numShown.join(""))
+    ).toString();
     switch (operator) {
       case "+":
         setHeadingNum(plus);
-        setNumset1(plus);
+        setPreservedNum(plus);
         setIsCalculated(true);
         break;
       case "-":
         setHeadingNum(minus);
-        setNumset1(minus);
+        setPreservedNum(minus);
         setIsCalculated(true);
         break;
       case "*":
         setHeadingNum(multiple);
-        setNumset1(multiple);
+        setPreservedNum(multiple);
         setIsCalculated(true);
         break;
       case "/":
         setHeadingNum(divide);
-        setNumset1(divide);
+        setPreservedNum(divide);
         setIsCalculated(true);
         break;
     }
@@ -95,7 +105,6 @@ function App() {
     <div>
       <div className="container">
         <h1 className="heading">React Calculator</h1>
-
         <NumpadHead headingNum={headingNum} />
         <Numpad
           onClickDel={onClickDel}
