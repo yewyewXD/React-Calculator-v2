@@ -3,39 +3,54 @@ import "./App.css";
 import Numpad from "./Numpad";
 
 function App() {
-  const [numbers, setNumbers] = useState([]);
-  const [numset1, setNumset1] = useState(0);
-  const [numset2, setNumset2] = useState(0);
-  const [operator, setOperator] = useState("");
+  const [headingNum, setHeadingNum] = useState([]);
+  const [numset1, setNumset1] = useState(null);
+  const [operator, setOperator] = useState(null);
+  const [isCleared, setIsCleared] = useState(false);
 
   function onClickNum(e) {
-    if (e.target.innerHTML !== "0" || numbers.length > 0) {
-      const newNumList = [...numbers, e.target.innerHTML];
-      setNumbers(newNumList);
+    if (parseInt(e.target.innerHTML) > 0 || headingNum.length > 0) {
+      if (operator === null) {
+        const newNumList = [...headingNum, e.target.innerHTML];
+        setHeadingNum(newNumList);
+      } else if (isCleared) {
+        const newNumList = [...headingNum, e.target.innerHTML];
+        setHeadingNum(newNumList);
+      } else {
+        setHeadingNum(e.target.innerHTML);
+        setIsCleared(true);
+      }
+    } else {
+      console.log("Invalid Starting Number");
     }
   }
   function onClickClear() {
-    setNumbers([]);
-    setNumset1(0);
-    setNumset2(0);
+    setHeadingNum([]);
+    setNumset1(null);
+    setOperator(null);
   }
   function onClickDel() {
-    const newNumList = [...numbers];
+    const newNumList = [...headingNum];
     newNumList.splice(-1, 1);
-    setNumbers(newNumList);
+    setHeadingNum(newNumList);
   }
-  function onClickPlus() {
-    setOperator("+");
-    const newNumList = [...numbers];
-    setNumset1(newNumList.join(""));
-    setNumbers([]);
+  function onClickPlus(e) {
+    if (numset1 !== null) {
+      onClickCalculate();
+    } else {
+      setOperator(e.target.innerHTML);
+    }
+    const numShown = [...headingNum];
+    setNumset1(numShown.join(""));
+    setIsCleared(false);
   }
+
   function onClickCalculate() {
-    const newNumList = [...numbers];
-    const plus = parseInt(numset1) + parseInt(newNumList.join(""));
+    const numShown = [...headingNum];
+    const plus = parseInt(numset1) + parseInt(numShown.join(""));
     switch (operator) {
       case "+":
-        setNumbers(plus);
+        setHeadingNum(plus);
     }
   }
 
@@ -43,7 +58,7 @@ function App() {
     <div>
       <div className="container">
         <h1 className="heading">React Calculator</h1>
-        <div className="numpad-head">{numbers}</div>
+        <div className="numpad-head">{headingNum}</div>
         <Numpad
           onClickDel={onClickDel}
           onClickClear={onClickClear}
