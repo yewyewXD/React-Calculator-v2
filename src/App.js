@@ -39,9 +39,9 @@ function App() {
       onClickCalculate();
     } else {
       setOperator(e.target.innerHTML);
+      const newNumList = [...headingNum];
+      setNumset1(newNumList.join(""));
     }
-    const numShown = [...headingNum];
-    setNumset1(numShown.join(""));
     setIsCleared(false);
   }
 
@@ -51,8 +51,11 @@ function App() {
     switch (operator) {
       case "+":
         setHeadingNum(plus);
+        const result = plus.toString();
+        setNumset1(result);
     }
   }
+  console.log(numset1);
 
   return (
     <div>
