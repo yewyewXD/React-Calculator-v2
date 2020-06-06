@@ -4,7 +4,7 @@ export default function Numpad({
   onClickNum,
   onClickClear,
   onClickDel,
-  onClickPlus,
+  onClickOperator,
   onClickCalculate,
 }) {
   return (
@@ -17,7 +17,7 @@ export default function Numpad({
         <div className="num" onClick={onClickDel}>
           del
         </div>
-        <div className="num operator" onClick={onClickPlus}>
+        <div className="num operator" onClick={onClickOperator}>
           +
         </div>
       </div>
@@ -32,7 +32,9 @@ export default function Numpad({
         <div className="num" onClick={onClickNum}>
           3
         </div>
-        <div className="num operator">-</div>
+        <div className="num operator" onClick={onClickOperator}>
+          -
+        </div>
       </div>
 
       <div className="num-row">
@@ -45,7 +47,9 @@ export default function Numpad({
         <div className="num" onClick={onClickNum}>
           6
         </div>
-        <div className="num operator">*</div>
+        <div className="num operator" onClick={onClickOperator}>
+          *
+        </div>
       </div>
 
       <div className="num-row">
@@ -58,7 +62,9 @@ export default function Numpad({
         <div className="num" onClick={onClickNum}>
           9
         </div>
-        <div className="num operator">/</div>
+        <div className="num operator" onClick={onClickOperator}>
+          /
+        </div>
       </div>
 
       <div className="num-row">
