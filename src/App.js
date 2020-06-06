@@ -98,13 +98,15 @@ function App() {
         setPreservedNum(divide);
         setIsCalculated(true);
         break;
+      default:
+        console.log("Invalid Starting Value");
     }
   }
 
   return (
     <div>
       <div className="container">
-        <h1 className="heading">React Calculator</h1>
+        <h1 className="heading">React Calculator V2</h1>
         <NumpadHead headingNum={headingNum} />
         <Numpad
           onClickDel={onClickDel}

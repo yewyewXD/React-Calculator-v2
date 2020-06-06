@@ -1,12 +1,6 @@
-.body {
-  background: grey;
+body {
+  background: lightgrey;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.container {
-  overflow: hidden;
-  margin: 0 auto;
-  padding: 0;
 }
 
 .heading {
@@ -15,7 +9,7 @@
 }
 
 .numpad-head {
-  width: 185px;
+  width: 250px;
   min-height: 40px;
   text-align: end;
   font-size: 30px;
@@ -41,10 +35,13 @@
   justify-content: center;
   align-items: center;
   border: solid 1px black;
+  background: rgba(255, 255, 255, 0.486);
+  transition: 0.2s;
 }
 
 .num:hover {
   cursor: pointer;
+  opacity: 0.5;
 }
 
 .clear {
@@ -59,5 +56,5 @@
 .equal {
   background: lightgreen;
   padding: 0 31px;
-  margin-right: 71px;
+  margin-right: 72px;
 }
