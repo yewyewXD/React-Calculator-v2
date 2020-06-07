@@ -7,25 +7,22 @@ function App() {
   const [headingNum, setHeadingNum] = useState([]);
   const [preservedNum, setPreservedNum] = useState(null);
   const [operator, setOperator] = useState(null);
-  const [isCleared, setIsCleared] = useState(false);
+  const [isOperated, setIsOperated] = useState(false);
   const [isCalculated, setIsCalculated] = useState(false);
   const [toggleNegate, setToggleNegate] = useState(true);
 
   function onClickNum(e) {
+    const newNumList = [...headingNum, e.target.innerHTML];
     if (parseInt(e.target.innerHTML) > 0 || headingNum.length > 0) {
       if (operator === null) {
-        const newNumList = [...headingNum, e.target.innerHTML];
         setHeadingNum(newNumList);
-      } else if (isCleared) {
-        const newNumList = [...headingNum, e.target.innerHTML];
+      } else if (isOperated) {
         setHeadingNum(newNumList);
       } else {
         setHeadingNum(e.target.innerHTML);
-        setIsCleared(true);
+        setIsOperated(true);
       }
       setIsCalculated(false);
-    } else {
-      console.log("Invalid Starting Value");
     }
   }
   function onClickClear() {
@@ -33,36 +30,36 @@ function App() {
     setPreservedNum(null);
     setOperator(null);
   }
+
   function onClickDel() {
     const newNumList = [...headingNum];
     newNumList.splice(-1, 1);
     setHeadingNum(newNumList);
   }
   function onClickOperator(e) {
+    const newNumList = [...headingNum];
     if (headingNum.length > 0) {
-      if (preservedNum !== null && isCalculated === false) {
+      if (preservedNum !== null && !isCalculated) {
         onClickCalculate();
       } else {
-        const newNumList = [...headingNum];
         setPreservedNum(newNumList.join(""));
       }
       setOperator(e.target.innerHTML);
-      setIsCleared(false);
-    } else {
-      console.log("Invalid Starting Value");
+      setIsOperated(false);
     }
   }
   function onClickNegate() {
+    const newNumList = [...headingNum];
     if (toggleNegate) {
-      const newNumList = ["-", ...headingNum];
+      newNumList.splice(0, 0, "-");
       setHeadingNum(newNumList);
     } else {
-      const newNumList = [...headingNum];
       newNumList.splice(0, 1);
       setHeadingNum(newNumList);
     }
     setToggleNegate(!toggleNegate);
   }
+
   function onClickCalculate() {
     const numShown = [...headingNum];
     const plus = (
