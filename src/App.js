@@ -33,7 +33,6 @@ function App() {
     setPreservedNum(null);
     setOperator(null);
   }
-
   function onClickDel() {
     newNumList.splice(-1, 1);
     setHeadingNum(newNumList);
@@ -52,7 +51,6 @@ function App() {
     setHeadingNum(newNumList);
     setToggleNegate(!toggleNegate);
   }
-
   function onClickCalculate() {
     const result = eval(
       `${preservedNum} ${operator} ${newNumList.join("")}`
