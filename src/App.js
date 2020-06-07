@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
 import Numpad from "./Numpad";
-import NumpadHead from "./NumpadHead";
 
 function App() {
   const [headingNum, setHeadingNum] = useState([]);
@@ -64,7 +63,7 @@ function App() {
     <>
       <h1>React Calculator V2</h1>
       <p>by yewyewXD</p>
-      <NumpadHead headingNum={headingNum} />
+      <div className="numpad-head">{headingNum}</div>
       <Numpad
         Del={onClickDel}
         Clear={onClickClear}
