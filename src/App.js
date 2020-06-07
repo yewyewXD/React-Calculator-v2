@@ -60,44 +60,33 @@ function App() {
     setToggleNegate(!toggleNegate);
   }
 
+  const preservedNumCal = {
+    "+": function (x, y) {
+      return x + y;
+    },
+    "-": function (x, y) {
+      return x - y;
+    },
+    "*": function (x, y) {
+      return x * y;
+    },
+    "/": function (x, y) {
+      return x / y;
+    },
+  };
+
+  const preservedInt = parseInt(preservedNum);
+  const numShown = [...headingNum];
+  const intShown = parseInt(numShown.join(""));
+
+  function totalCalculation(opt, num1, num2) {
+    return preservedNumCal[opt](num1, num2).toString();
+  }
   function onClickCalculate() {
-    const numShown = [...headingNum];
-    const plus = (
-      parseInt(preservedNum) + parseInt(numShown.join(""))
-    ).toString();
-    const minus = (
-      parseInt(preservedNum) - parseInt(numShown.join(""))
-    ).toString();
-    const multiple = (
-      parseInt(preservedNum) * parseInt(numShown.join(""))
-    ).toString();
-    const divide = (
-      parseInt(preservedNum) / parseInt(numShown.join(""))
-    ).toString();
-    switch (operator) {
-      case "+":
-        setHeadingNum(plus);
-        setPreservedNum(plus);
-        setIsCalculated(true);
-        break;
-      case "-":
-        setHeadingNum(minus);
-        setPreservedNum(minus);
-        setIsCalculated(true);
-        break;
-      case "*":
-        setHeadingNum(multiple);
-        setPreservedNum(multiple);
-        setIsCalculated(true);
-        break;
-      case "/":
-        setHeadingNum(divide);
-        setPreservedNum(divide);
-        setIsCalculated(true);
-        break;
-      default:
-        console.log("Invalid Starting Value");
-    }
+    const result = totalCalculation(operator, preservedInt, intShown);
+    setHeadingNum(result);
+    setPreservedNum(result);
+    setIsCalculated(true);
   }
 
   return (
