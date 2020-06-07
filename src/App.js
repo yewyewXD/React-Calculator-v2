@@ -8,21 +8,24 @@ function App() {
   const [preservedNum, setPreservedNum] = useState(null);
   const [operator, setOperator] = useState(null);
   const [isOperated, setIsOperated] = useState(false);
-  const [isCalculated, setIsCalculated] = useState(false);
-  const [toggleNegate, setToggleNegate] = useState(true);
+  const [isCal, setIsCal] = useState(false);
+  const [toggleNegate, setToggleNegate] = useState(false);
+
+  const newNumList = [...headingNum];
 
   function onClickNum(e) {
-    const newNumList = [...headingNum, e.target.innerHTML];
-    if (parseInt(e.target.innerHTML) > 0 || headingNum.length > 0) {
+    const num = e.target.innerText;
+    const newHeadingNum = [...headingNum, num];
+    if (parseInt(num) > 0 || headingNum.length > 0) {
       if (operator === null) {
-        setHeadingNum(newNumList);
+        setHeadingNum(newHeadingNum);
       } else if (isOperated) {
-        setHeadingNum(newNumList);
+        setHeadingNum(newHeadingNum);
       } else {
-        setHeadingNum(e.target.innerHTML);
+        setHeadingNum(num);
         setIsOperated(true);
       }
-      setIsCalculated(false);
+      setIsCal(false);
     }
   }
   function onClickClear() {
@@ -32,78 +35,47 @@ function App() {
   }
 
   function onClickDel() {
-    const newNumList = [...headingNum];
     newNumList.splice(-1, 1);
     setHeadingNum(newNumList);
   }
   function onClickOperator(e) {
-    const newNumList = [...headingNum];
     if (headingNum.length > 0) {
-      if (preservedNum !== null && !isCalculated) {
-        onClickCalculate();
-      } else {
-        setPreservedNum(newNumList.join(""));
-      }
-      setOperator(e.target.innerHTML);
+      preservedNum !== null && !isCal
+        ? onClickCalculate()
+        : setPreservedNum(newNumList.join(""));
+      setOperator(e.target.innerText);
       setIsOperated(false);
     }
   }
   function onClickNegate() {
-    const newNumList = [...headingNum];
-    if (toggleNegate) {
-      newNumList.splice(0, 0, "-");
-      setHeadingNum(newNumList);
-    } else {
-      newNumList.splice(0, 1);
-      setHeadingNum(newNumList);
-    }
+    !toggleNegate ? newNumList.splice(0, 0, "-") : newNumList.splice(0, 1);
+    setHeadingNum(newNumList);
     setToggleNegate(!toggleNegate);
   }
 
-  const preservedNumCal = {
-    "+": function (x, y) {
-      return x + y;
-    },
-    "-": function (x, y) {
-      return x - y;
-    },
-    "*": function (x, y) {
-      return x * y;
-    },
-    "/": function (x, y) {
-      return x / y;
-    },
-  };
-
-  const preservedInt = parseInt(preservedNum);
-  const numShown = [...headingNum];
-  const intShown = parseInt(numShown.join(""));
-
-  function totalCalculation(opt, num1, num2) {
-    return preservedNumCal[opt](num1, num2).toString();
-  }
   function onClickCalculate() {
-    const result = totalCalculation(operator, preservedInt, intShown);
+    const result = eval(
+      `${preservedNum} ${operator} ${newNumList.join("")}`
+    ).toString();
     setHeadingNum(result);
     setPreservedNum(result);
-    setIsCalculated(true);
+    setIsCal(true);
   }
 
   return (
-    <div>
-      <div className="container">
-        <h1 className="heading">React Calculator V2</h1>
-        <NumpadHead headingNum={headingNum} />
-        <Numpad
-          onClickDel={onClickDel}
-          onClickClear={onClickClear}
-          onClickNum={onClickNum}
-          onClickOperator={onClickOperator}
-          onClickCalculate={onClickCalculate}
-          onClickNegate={onClickNegate}
-        />
-      </div>
-    </div>
+    <>
+      <h1>React Calculator V2</h1>
+      <p>by yewyewXD</p>
+      <NumpadHead headingNum={headingNum} />
+      <Numpad
+        Del={onClickDel}
+        Clear={onClickClear}
+        Num={onClickNum}
+        Operator={onClickOperator}
+        Calculate={onClickCalculate}
+        Negate={onClickNegate}
+      />
+    </>
   );
 }
 

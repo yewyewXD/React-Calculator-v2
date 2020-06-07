@@ -1,58 +1,51 @@
 body {
   background: lightgrey;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.heading {
   text-align: center;
+}
+p {
   margin-bottom: 80px;
 }
-
 .numpad-head {
   width: 250px;
-  min-height: 40px;
+  height: 40px;
   text-align: end;
   font-size: 30px;
   margin: 20px auto;
-  border: solid 1px black;
+  border: solid;
 }
-
-.numpad {
+.numpad,
+.num-row,
+.num {
   display: flex;
+}
+.numpad {
   align-items: center;
   flex-direction: column;
 }
-
 .num-row {
-  display: flex;
   flex-direction: row;
 }
-
 .num {
   width: 60px;
   height: 60px;
-  display: flex;
   justify-content: center;
   align-items: center;
-  border: solid 1px black;
+  border: solid 1px;
   background: rgba(255, 255, 255, 0.486);
   transition: 0.2s;
 }
-
 .num:hover {
   cursor: pointer;
   opacity: 0.5;
 }
-
 .clear {
   background: lightcoral;
 }
-
 .operator {
   background: lightblue;
   margin-left: 10px;
 }
-
 .equal {
   background: lightgreen;
   padding: 0 31px;
