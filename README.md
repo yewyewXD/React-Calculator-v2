@@ -6,7 +6,7 @@ An improved version of [React Calculator](https://github.com/yewyewXD/React-Calc
 
 ## Build status
 
-**Success:** [See Live](https://yewyewxd.github.io/React-Calculator/)
+**Success:** [See Live](https://yewyewxd.github.io/React-Calculator-v2/)
 
 Started on: 5 Jun 2020 <br>
 Completed on: 7 Jun 2020 <br>
